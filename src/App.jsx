@@ -14,7 +14,6 @@ const App = () => {
     <Button>Sort By Data</Button>
 
     <Card></Card>
-    <Button>See More</Button>
 
     </>
   );
