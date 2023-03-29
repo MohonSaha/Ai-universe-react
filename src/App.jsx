@@ -9,9 +9,7 @@ const App = () => {
 
      <Header></Header>
 
-
-     {/* pass data using children props  */}
-    <Button>Sort By Data</Button>
+    
 
     <Card></Card>
 

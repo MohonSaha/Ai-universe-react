@@ -25,20 +25,30 @@ const Card = () => {
     setShowAll(true);
   }
 
-  useEffect( () =>{
+  const handleSort = () => {
+    const sortedData = data.sort((a, b) => {
+      return new Date(a.published_in) - new Date(b.published_in);
+      
+    });
+    setData([...data, sortedData]);
+  }
+
+
+  useEffect(() => {
     fetch(`https://openapi.programming-hero.com/api/ai/tool/${uniqueId}`)
-    .then(res => res.json())
-    .then(data => setSingleData(data.data))
-  } ,[uniqueId])
+      .then(res => res.json())
+      .then(data => setSingleData(data.data))
+  }, [uniqueId])
 
 
   return (
 
     <>
+      <span onClick={handleSort}><Button>Sort By Data</Button></span>
       <div className='my-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:px-12 px-8'>
 
         {
-          data.slice(0, showAll ? 12 : 6).map(singleData => {
+          data?.slice(0, showAll ? 12 : 6).map(singleData => {
             return <SingleData
               key={singleData.id}
               singleData={singleData}
@@ -53,13 +63,13 @@ const Card = () => {
 
       {
         !showAll && (<span className="btn-showAll" onClick={handleShowAll}>
-        <Button>See More</Button>
+          <Button>See More</Button>
         </span>)
       }
 
       <Modal singleData={singleData}></Modal>
-      </>
-      );
+    </>
+  );
 };
 
-      export default Card;
+export default Card;

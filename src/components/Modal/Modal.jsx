@@ -5,7 +5,6 @@ const Modal = (props) => {
 
     console.log(props);
     const { image_link, description, integrations, features } = props.singleData;
-    console.log(props.singleData);
 
     return (
         <>
